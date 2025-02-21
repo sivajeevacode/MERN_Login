@@ -9,14 +9,33 @@ const App = () => {
   const [data,setData] = useState([]);
   const [box,setBox] =useState(false);
 
+  const [welcome,setWelcome] =useState(false)
   const submit = (e)=>{
     e.preventDefault();
     axios.post("http://localhost:3000/login",{email,password})
     .then((user)=>{
-      setShow(false)
-      setBox(true)
       setData(user.data)
-     
+      setBox(true)
+      
+      
+      if(user.data==="incorrect password" && "record not exist")
+      {
+       
+        setShow(true);
+        setEmail="";
+        setPassword="";
+        
+       
+      }
+      else if(user.data==="login successfully")
+      {
+        setShow(false)
+        setTimeout(()=>{
+          setBox(false)
+        },2000)
+        setWelcome(true)
+      }
+
     }).catch((err)=>{
       console.log("error founded ",err);
     })
@@ -26,7 +45,7 @@ const App = () => {
   return (
     <div>
       <p className={box?"visit":""}>{data}</p>
-      
+
       <form onSubmit={submit} className={show?"":"hidden"}>
         <h2>Log-In</h2>
         <div className="input-group">
@@ -41,7 +60,12 @@ const App = () => {
 
         <button>Log in</button>
 
+
       </form>
+      
+      <h3 className={welcome?"wel":""} >Find Your Dream Job Anyone,Anywhere </h3>
+
+      
     </div>
   )
 }
