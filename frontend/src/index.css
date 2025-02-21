@@ -68,3 +68,24 @@ form button
   cursor: pointer;
   border-radius: 3px;
 }
+
+form.hidden
+{
+  display: none;
+}
+p{
+  display: none;
+  color: #fff;
+  background-color: #6200b3;
+  height: 60px;
+  padding: 15px;
+  border-radius: 5px;
+  font-weight: bold;
+  font-size: 20px;
+ text-align: center;
+
+}
+p.visit
+{
+  display: block;
+}
